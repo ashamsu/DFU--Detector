@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("DFU Detector")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyDescription("A simple DFU Detector")> 
 <Assembly: AssemblyCompany("The Private Dev Team")> 
 <Assembly: AssemblyProduct("")> 
 <Assembly: AssemblyCopyright("Copyright ©  2010")> 

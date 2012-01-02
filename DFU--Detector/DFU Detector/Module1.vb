@@ -48,12 +48,16 @@ Module Module1
         Loop
     End Sub
     Sub main(ByVal args() As String)
+        Dim s() As String = System.Environment.GetCommandLineArgs()
         If args.Length = 0 Then
             Console.WriteLine()
-            Console.Write("Usage: DFU Detector.exe -s")
+            Console.WriteLine("Usage: DFU Detector.exe [Argument]")
+            Console.WriteLine("-s   Just start normally")
+            Console.WriteLine("-ss  Start silently, as in it won't display anything until a DFU is detected")
+            Console.WriteLine("-h   Show this dialog")
             Console.WriteLine()
             Exit Sub
-        Else
+        ElseIf s(1) = "-s" Then
             Console.WriteLine()
             Console.WriteLine("Searching for DFU...")
             BackgroundWorker1 = New System.ComponentModel.BackgroundWorker
@@ -64,6 +68,28 @@ Module Module1
                     Exit Sub
                 End If
             Loop
+        ElseIf s(1) = "-ss" Then
+            Console.WriteLine()
+            BackgroundWorker1 = New System.ComponentModel.BackgroundWorker
+            BackgroundWorker1.RunWorkerAsync()
+            Do While forever = True
+                If DFUConnected = True Then
+                    Console.WriteLine("DFU device found!")
+                    Exit Sub
+                End If
+            Loop
+        ElseIf s(1) = "-h" Then
+            Console.WriteLine()
+            Console.WriteLine("Usage: DFU.exe [Argument]")
+            Console.WriteLine("-s   Just start normally")
+            Console.WriteLine("-ss  Start silently, as in it won't display anything until a DFU is detected")
+            Console.WriteLine("-h   Show this dialog")
+            Console.WriteLine()
+            Exit Sub
+        Else
+            Console.WriteLine()
+            Console.WriteLine("Invalid argument")
+            Exit Sub
         End If
     End Sub
 End Module
